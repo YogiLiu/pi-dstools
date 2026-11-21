@@ -1,0 +1,29 @@
+{
+  "name": "pi-dstools",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix --fix-suggestions",
+    "fmt": "oxfmt --write",
+    "fmt:check": "oxfmt --check",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest --coverage.enabled=false",
+    "check": "pnpm lint && pnpm fmt:check && pnpm typecheck && pnpm test",
+    "pack:dry-run": "pnpm --filter \"./packages/*\" pack --dry-run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^4.1.12",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "oxlint-tsgolint": "^7.0.2007",
+    "vitest": "^4.1.12"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "packageManager": "pnpm@12.21.0"
+}
