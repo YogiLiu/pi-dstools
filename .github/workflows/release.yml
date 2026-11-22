@@ -37,6 +37,7 @@ jobs:
       - name: Quality gate
         run: pnpm check
       - name: Create version PR or publish
+        id: changesets
         uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           version-script: pnpm version-packages
@@ -44,3 +45,9 @@ jobs:
           pr-title: "chore: version packages"
           commit-message: "chore: version packages"
           github-token: ${{ secrets.RELEASE_TOKEN }}
+      - name: Enable auto-merge for version PR
+        if: steps.changesets.outputs['has-changesets'] == 'true' && steps.changesets.outputs['pr-number']
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          PR_NUMBER: ${{ steps.changesets.outputs['pr-number'] }}
+        run: gh pr merge --auto --merge --repo "$GITHUB_REPOSITORY" "$PR_NUMBER"
