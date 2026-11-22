@@ -2,8 +2,9 @@ import { DEEPSEEK_PROVIDER_ID, resolveDeepSeekApiKey } from "@pi-dstools/deepsee
 import { Check } from "typebox/value";
 import { describe, expect, it, vi } from "vitest";
 
+import searchExtension from "../extensions/index";
 import { searchDeepSeek } from "../src/client";
-import searchExtension, { createDsSearchTool } from "../src/index";
+import { createDsSearchTool } from "../src/index";
 import { DS_SEARCH_OUTPUT_SCHEMA, DS_SEARCH_PARAMS } from "../src/schemas";
 import {
   detailsOf,
