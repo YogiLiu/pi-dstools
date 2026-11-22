@@ -1,6 +1,6 @@
-# Changelog
+# @pi-dstools/fetch
 
-## [0.1.0] - 2026-11-22
+## 0.1.0
 
 ### Added
 
