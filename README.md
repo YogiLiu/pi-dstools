@@ -4,11 +4,11 @@
 
 _Pi extensions powered by DeepSeek_
 
-[![Quality](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml)
-[![npm version (@pi-dstools/web)](https://img.shields.io/npm/v/%40pi-dstools%2Fweb?label=%40pi-dstools%2Fweb)](https://www.npmjs.com/package/@pi-dstools/web)
-[![npm version (@pi-dstools/search)](https://img.shields.io/npm/v/%40pi-dstools%2Fsearch?label=%40pi-dstools%2Fsearch)](https://www.npmjs.com/package/@pi-dstools/search)
-[![npm version (@pi-dstools/fetch)](https://img.shields.io/npm/v/%40pi-dstools%2Ffetch?label=%40pi-dstools%2Ffetch)](https://www.npmjs.com/package/@pi-dstools/fetch)
-[![License](https://img.shields.io/badge/License-BSD--3--Clause-blue?style=flat-square)](LICENSE)
+[![Quality](https://img.shields.io/github/actions/workflow/status/YogiLiu/pi-dstools/quality.yml?branch=main&label=Quality&style=flat-square&logo=githubactions&logoColor=white)](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml)
+[![npm version (@pi-dstools/web)](https://img.shields.io/npm/v/%40pi-dstools%2Fweb?label=%40pi-dstools%2Fweb&style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/package/@pi-dstools/web)
+[![npm version (@pi-dstools/search)](https://img.shields.io/npm/v/%40pi-dstools%2Fsearch?label=%40pi-dstools%2Fsearch&style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/package/@pi-dstools/search)
+[![npm version (@pi-dstools/fetch)](https://img.shields.io/npm/v/%40pi-dstools%2Ffetch?label=%40pi-dstools%2Ffetch&style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/package/@pi-dstools/fetch)
+[![License](https://img.shields.io/badge/License-BSD--3--Clause-blue?style=flat-square&logo=opensourceinitiative&logoColor=white)](LICENSE)
 
 English | [简体中文](README.zh-CN.md)
 
