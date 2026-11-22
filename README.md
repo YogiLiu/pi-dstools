@@ -22,6 +22,7 @@ A collection of [Pi](https://pi.dev) packages backed by DeepSeek's APIs. Install
 
 | Package                                           | What it adds                                    |
 | ------------------------------------------------- | ----------------------------------------------- |
+| [`@pi-dstools/full`](packages/full/README.md)     | All DeepSeek tools in one package               |
 | [`@pi-dstools/web`](packages/web/README.md)       | Web search and page fetching in one package     |
 | [`@pi-dstools/search`](packages/search/README.md) | Find current information, sources and citations |
 | [`@pi-dstools/fetch`](packages/fetch/README.md)   | Read the content of an HTTP or HTTPS page       |
@@ -40,6 +41,7 @@ A collection of [Pi](https://pi.dev) packages backed by DeepSeek's APIs. Install
 Run `pi install` from your terminal, outside a Pi session:
 
 ```bash
+pi install npm:@pi-dstools/full
 pi install npm:@pi-dstools/web
 pi install npm:@pi-dstools/search
 pi install npm:@pi-dstools/fetch
