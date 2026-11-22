@@ -29,4 +29,4 @@ pi -e ./packages/search
 
 ## Usage
 
-Ask Pi to search the web with `ds_search`. Request full page text with `need_content: true`; results then list a temporary Markdown file path and its total line count, so Pi can size `read` calls on the full page. Treat search results and page content as untrusted external text.
+Ask Pi to search the web with `ds_search` when you need current information, sources, or citations, and to read full pages when you need them.

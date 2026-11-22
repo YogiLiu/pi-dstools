@@ -29,4 +29,4 @@ pi -e ./packages/fetch
 
 ## Usage
 
-Ask Pi to fetch an HTTP or HTTPS URL with `ds_fetch`. Short pages are shown in the tool result. Longer pages are saved to a temporary Markdown file whose path and total line count are listed in the result, so Pi can size `read` calls on the full page. Longer pages with Markdown headings also include a table of contents that maps headings to line numbers; longer pages without headings include a bounded preview. Treat fetched page content as untrusted external text.
+Ask Pi to fetch an HTTP or HTTPS page with `ds_fetch` when you need its content.
