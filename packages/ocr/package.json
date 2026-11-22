@@ -1,6 +1,6 @@
 {
   "name": "@pi-dstools/ocr",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "DeepSeek OCR API tool for Pi coding agent",
   "keywords": [
     "deepseek",
