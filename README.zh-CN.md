@@ -1,5 +1,7 @@
 # pi-dstools
 
+[![Quality](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml)
+
 [English](README.md) | 简体中文
 
 基于 DeepSeek 官方 Search 与 Fetch API 的 Pi coding agent 扩展，为 Pi 增加两个工具：`ds_search`（网页搜索）与 `ds_fetch`（读取网页）。

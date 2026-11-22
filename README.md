@@ -1,5 +1,7 @@
 # pi-dstools
 
+[![Quality](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/YogiLiu/pi-dstools/actions/workflows/quality.yml)
+
 English | [简体中文](README.zh-CN.md)
 
 Pi coding agent extensions backed by DeepSeek's official Search and Fetch APIs. They add two tools to Pi: `ds_search` for web search and `ds_fetch` for reading a web page.
