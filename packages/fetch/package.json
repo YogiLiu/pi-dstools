@@ -9,6 +9,10 @@
     "pi-package"
   ],
   "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YogiLiu/pi-dstools.git"
+  },
   "files": [
     "src",
     "README.md",
