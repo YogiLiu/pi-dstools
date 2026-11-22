@@ -15,6 +15,8 @@
     "pack:dry-run": "pnpm --filter \"./packages/*\" pack --dry-run"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@types/node": "^22.20.5",
     "@vitest/coverage-v8": "^4.1.12",
     "oxfmt": "^0.79.0",
