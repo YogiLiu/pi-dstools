@@ -1,0 +1,63 @@
+{
+  "name": "@pi-dstools/full",
+  "version": "0.1.0",
+  "description": "All DeepSeek API tools for Pi coding agent",
+  "keywords": [
+    "deepseek",
+    "fetch",
+    "full",
+    "ocr",
+    "pi-coding-agent",
+    "pi-package",
+    "search"
+  ],
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YogiLiu/pi-dstools.git"
+  },
+  "files": [
+    "src",
+    "extensions",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix --fix-suggestions .",
+    "fmt": "oxfmt --write .",
+    "fmt:check": "oxfmt --check .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "pnpm --dir ../.. test",
+    "test:watch": "pnpm --dir ../.. test:watch",
+    "pack:dry-run": "pnpm pack --dry-run"
+  },
+  "dependencies": {
+    "@pi-dstools/fetch": "workspace:*",
+    "@pi-dstools/ocr": "workspace:*",
+    "@pi-dstools/search": "workspace:*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "1.5.2",
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/search/index.ts",
+      "./extensions/fetch/index.ts",
+      "./extensions/ocr/index.ts"
+    ],
+    "changelogPath": "./CHANGELOG.md"
+  }
+}

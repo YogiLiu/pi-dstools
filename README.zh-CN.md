@@ -22,6 +22,7 @@ _由 DeepSeek 驱动的 Pi 扩展_
 
 | 软件包                                            | 提供内容                       |
 | ------------------------------------------------- | ------------------------------ |
+| [`@pi-dstools/full`](packages/full/README.md)     | 一个包内提供全部 DeepSeek 工具 |
 | [`@pi-dstools/web`](packages/web/README.md)       | 一个包内提供网页搜索与页面抓取 |
 | [`@pi-dstools/search`](packages/search/README.md) | 查找最新信息、来源与引用       |
 | [`@pi-dstools/fetch`](packages/fetch/README.md)   | 读取 HTTP 或 HTTPS 页面的内容  |
@@ -40,6 +41,7 @@ _由 DeepSeek 驱动的 Pi 扩展_
 在终端中、Pi 会话之外执行 `pi install`：
 
 ```bash
+pi install npm:@pi-dstools/full
 pi install npm:@pi-dstools/web
 pi install npm:@pi-dstools/search
 pi install npm:@pi-dstools/fetch
