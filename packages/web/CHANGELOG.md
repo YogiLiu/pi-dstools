@@ -1,5 +1,13 @@
 # @pi-dstools/web
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @pi-dstools/fetch@0.1.2
+  - @pi-dstools/search@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

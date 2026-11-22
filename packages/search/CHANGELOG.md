@@ -1,5 +1,12 @@
 # @pi-dstools/search
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`c56b08a`](https://github.com/YogiLiu/pi-dstools/commit/c56b08a8b48e9304c059c4623d340e0f2d456b35)]:
+  - @pi-dstools/deepseek@0.1.1
+
 ## 0.1.1
 
 ### Patch Changes
