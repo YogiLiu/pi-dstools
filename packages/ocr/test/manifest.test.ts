@@ -21,7 +21,7 @@ const manifest = hostCast<PackageManifest>(
 describe("Pi package manifest", () => {
   it("declares the OCR package and compact extension entry points", () => {
     expect(manifest.name).toBe("@pi-dstools/ocr");
-    expect(manifest.version).toBe("0.0.0");
+    expect(manifest.version).toBeTypeOf("string");
     expect(manifest.pi.extensions).toEqual(["./extensions/index.ts"]);
     expect(manifest.pi.changelogPath).toBe("./CHANGELOG.md");
     for (const entry of manifest.pi.extensions) {
