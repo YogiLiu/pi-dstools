@@ -14,12 +14,6 @@ export interface DeepSeekFetchResponse {
   readonly content: string;
 }
 
-export interface HeadingEntry {
-  readonly line: number;
-  readonly level: number;
-  readonly text: string;
-}
-
 export interface FetchToolDetails {
   readonly url: string;
   readonly title: string;

@@ -152,8 +152,9 @@ export function makeRegistry(options: RegistryOptions = {}) {
 export function makeContext(
   registry: CredentialRegistry,
   signal?: Readonly<AbortSignal>,
+  cwd = "/workspace",
 ): ExtensionToolContext {
-  return hostCast({ modelRegistry: registry, signal });
+  return hostCast({ cwd, modelRegistry: registry, signal });
 }
 
 export function firstText(result: { readonly content: readonly unknown[] }): string {

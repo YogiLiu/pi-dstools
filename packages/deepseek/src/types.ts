@@ -1,4 +1,4 @@
-export type ToolApiName = "Search" | "Fetch";
+export type ToolApiName = "Search" | "Fetch" | "OCR";
 
 export type DeepSeekToolErrorKind =
   | "auth"
@@ -12,6 +12,12 @@ export type DeepSeekToolErrorKind =
   | "filesystem";
 
 export type JsonPrimitive = string | number | boolean | null;
+
+export interface HeadingEntry {
+  readonly line: number;
+  readonly level: number;
+  readonly text: string;
+}
 
 export interface ToolIdentity {
   readonly toolName: string;
@@ -48,10 +54,12 @@ export interface HttpResponse {
   readonly text: () => Promise<string>;
 }
 
+export type DeepSeekRequestBody = string | Readonly<FormData>;
+
 export interface DeepSeekRequestInit {
   readonly method: "POST";
   readonly headers: Readonly<Record<string, string>>;
-  readonly body: string;
+  readonly body: DeepSeekRequestBody;
   readonly signal?: Readonly<AbortSignal>;
 }
 
@@ -77,11 +85,26 @@ export interface ClientOptions {
   readonly onRetry?: (event: RetryEvent) => void;
 }
 
-export interface PostDeepSeekJsonOptions extends ClientOptions {
+export interface PostDeepSeekRequestOptions extends ClientOptions {
   readonly endpoint: string;
   readonly apiName: ToolApiName;
   readonly apiKey: string;
+  readonly body: DeepSeekRequestBody;
+  readonly headers: Readonly<Record<string, string>>;
+}
+
+export interface PostDeepSeekJsonOptions extends Omit<
+  PostDeepSeekRequestOptions,
+  "body" | "headers"
+> {
   readonly body: Readonly<Record<string, JsonPrimitive>>;
+}
+
+export interface PostDeepSeekFormDataOptions extends Omit<
+  PostDeepSeekRequestOptions,
+  "body" | "headers"
+> {
+  readonly formData: Readonly<FormData>;
 }
 
 export interface ContentFileSystem {

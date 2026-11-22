@@ -1,9 +1,13 @@
 import { join } from "node:path";
 
 import {
+  PREVIEW_LENGTH as SHARED_PREVIEW_LENGTH,
   contentDirectory,
   displayContent,
   displayText,
+  extractHeadings,
+  formatHeadingTable,
+  previewText,
   resolveContentOptions,
   splitContentLines,
   unicodeLength,
@@ -11,7 +15,6 @@ import {
   type ContentOptions,
 } from "@pi-dstools/deepseek";
 
-import { extractHeadings, formatHeadingTable } from "./headings";
 import type {
   DeepSeekFetchResponse,
   FetchToolDetails,
@@ -19,17 +22,11 @@ import type {
   PreparedFetchOutput,
 } from "./types";
 
-export const PREVIEW_LENGTH = 300;
+export const PREVIEW_LENGTH = SHARED_PREVIEW_LENGTH;
 export const PREVIEW_COMMENT = `<!-- The following is a preview of the first ${PREVIEW_LENGTH} characters -->`;
 export const FULL_CONTENT_COMMENT = "<!-- The following is the full content -->";
 export const EMPTY_CONTENT_COMMENT = "<!-- Page content is empty -->";
 export const TABLE_OF_CONTENTS_COMMENT = "<!-- Table of contents -->";
-
-function previewText(sanitized: string): string {
-  const characters = Array.from(sanitized);
-  if (characters.length <= PREVIEW_LENGTH) return sanitized;
-  return `${characters.slice(0, PREVIEW_LENGTH).join("")}...`;
-}
 
 interface FullContentFile {
   readonly path: string;
