@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import fetchExtension from "../src/index";
+import fetchExtension from "../extensions/index";
 import { hostCast } from "./helpers";
 
 function registersThroughDefaultEntryPoint() {

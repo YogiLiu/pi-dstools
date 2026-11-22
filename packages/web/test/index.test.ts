@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { hostCast } from "../../deepseek/test/fixtures";
-import fetchExtension from "../src/fetch";
-import searchExtension from "../src/search";
+import fetchExtension from "../extensions/fetch/index";
+import searchExtension from "../extensions/search/index";
 
 function registersSearchThroughWebPackage() {
   const registerTool = vi.fn<(tool: unknown) => void>();

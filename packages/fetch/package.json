@@ -15,6 +15,7 @@
   },
   "files": [
     "src",
+    "extensions",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -60,7 +61,7 @@
   },
   "pi": {
     "extensions": [
-      "./src/index.ts"
+      "./extensions/index.ts"
     ],
     "changelogPath": "./CHANGELOG.md"
   }
