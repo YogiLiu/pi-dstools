@@ -1,5 +1,11 @@
 # @pi-dstools/search
 
+## 0.1.1
+
+### Patch Changes
+
+- [#4](https://github.com/YogiLiu/pi-dstools/pull/4) [`c4b6108`](https://github.com/YogiLiu/pi-dstools/commit/c4b6108d8e60803b5000dd2ff880fdef50f1090e) Thanks [@YogiLiu](https://github.com/YogiLiu)! - Show concise Pi extension labels for the web, search, and fetch packages.
+
 ## 0.1.0
 
 ### Added

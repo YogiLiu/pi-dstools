@@ -1,6 +1,6 @@
 {
   "name": "@pi-dstools/web",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DeepSeek Search and Fetch API tools for Pi coding agent",
   "keywords": [
     "deepseek",
