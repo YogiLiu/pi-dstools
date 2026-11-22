@@ -93,6 +93,7 @@ pnpm exec vitest run -t "<test name>" --coverage.enabled=false
   runs without coverage.
 - Test globs, setup files, and coverage policy are defined in `vitest.config.ts`. Do not
   lower or bypass them.
+- Tests live under `packages/*/test/` and are named `*.test.ts`.
 - Tests are executable specifications. When behavior changes, add or update tests instead
   of writing explanatory prose. Tests must not require real network access or real
   credentials.

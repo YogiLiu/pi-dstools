@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     environment: "node",
-    include: ["packages/*/test/**/*.test.ts", "scripts/test/**/*.test.ts"],
+    include: ["packages/*/test/**/*.test.ts"],
     setupFiles: ["packages/deepseek/test/setup.ts"],
     coverage: {
       provider: "v8",
