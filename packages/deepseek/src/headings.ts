@@ -1,5 +1,4 @@
-import { displayContent, splitContentLines } from "@pi-dstools/deepseek";
-
+import { displayContent, splitContentLines } from "./text";
 import type { HeadingEntry } from "./types";
 
 interface Fence {

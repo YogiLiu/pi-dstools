@@ -1,11 +1,13 @@
 import { DEFAULT_RETRY_DELAYS_MS, MAX_RETRY_DELAY_MS, MAX_TOOL_RETRIES } from "./constants";
 import { DeepSeekToolError, errorMessage, isAbortError, isRecord } from "./errors";
 import type {
+  DeepSeekRequestBody,
   DeepSeekRequestInit,
   HttpHeaders,
   HttpResponse,
-  JsonPrimitive,
+  PostDeepSeekFormDataOptions,
   PostDeepSeekJsonOptions,
+  PostDeepSeekRequestOptions,
   ToolApiName,
 } from "./types";
 
@@ -65,17 +67,18 @@ export function retryDelayMs(
 }
 
 function buildRequestInit(
-  body: Readonly<Record<string, JsonPrimitive>>,
+  body: DeepSeekRequestBody,
   apiKey: string,
   signal: Readonly<AbortSignal> | undefined,
+  headers: Readonly<Record<string, string>>,
 ): DeepSeekRequestInit {
   return {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
+      ...headers,
     },
-    body: JSON.stringify(body),
+    body,
     ...(signal === undefined ? {} : { signal }),
   };
 }
@@ -141,7 +144,7 @@ function asClientError(
   );
 }
 
-export function postDeepSeekJson(options: PostDeepSeekJsonOptions): Promise<unknown> {
+function postDeepSeekRequest(options: PostDeepSeekRequestOptions): Promise<unknown> {
   if (!options.apiKey) {
     throw new DeepSeekToolError("Missing DeepSeek API key.", "auth");
   }
@@ -155,7 +158,7 @@ export function postDeepSeekJson(options: PostDeepSeekJsonOptions): Promise<unkn
       options.signal?.throwIfAborted();
       const response = await fetchImpl(
         options.endpoint,
-        buildRequestInit(options.body, options.apiKey, options.signal),
+        buildRequestInit(options.body, options.apiKey, options.signal, options.headers),
       );
       if (!response.ok) {
         const message = await readHttpError(response, options.apiName);
@@ -180,4 +183,22 @@ export function postDeepSeekJson(options: PostDeepSeekJsonOptions): Promise<unkn
   };
 
   return attemptRequest(0);
+}
+
+export function postDeepSeekJson(options: PostDeepSeekJsonOptions): Promise<unknown> {
+  const { body, ...requestOptions } = options;
+  return postDeepSeekRequest({
+    ...requestOptions,
+    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+export function postDeepSeekFormData(options: PostDeepSeekFormDataOptions): Promise<unknown> {
+  const { formData, ...requestOptions } = options;
+  return postDeepSeekRequest({
+    ...requestOptions,
+    body: formData,
+    headers: {},
+  });
 }

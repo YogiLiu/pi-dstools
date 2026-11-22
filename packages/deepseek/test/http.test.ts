@@ -1,10 +1,21 @@
-import { DEEPSEEK_SEARCH_URL, postDeepSeekJson, type DeepSeekFetch } from "../src/index";
+import type { File } from "node:buffer";
+
+import {
+  DEEPSEEK_OCR_URL,
+  DEEPSEEK_SEARCH_URL,
+  postDeepSeekFormData,
+  postDeepSeekJson,
+  type DeepSeekFetch,
+  type RetryEvent,
+} from "../src/index";
 import { describe, expect, it, vi } from "vitest";
 
 import {
   fetchInit,
   fetchOnce,
+  fetchSequence,
   firstCall,
+  hostCast,
   httpFailure,
   instantSleep,
   jsonResponse,
@@ -13,7 +24,7 @@ import {
   rejectedSync,
   requestBody,
 } from "./fixtures";
-import { baseOptions } from "./http-helpers";
+import { baseFormOptions, baseOptions } from "./http-helpers";
 
 function rejectsMissingApiKey() {
   const error = rejectedSync(() => {
@@ -39,6 +50,54 @@ async function postsJsonWithBearerAuth() {
     "Content-Type": "application/json",
   });
   expect(requestBody(init)).toEqual({ query: "DeepSeek" });
+}
+
+function rejectsMissingApiKeyForFormData() {
+  const error = rejectedSync(() => {
+    void postDeepSeekFormData({ ...baseFormOptions(), apiKey: "" });
+  });
+  expect(error).toMatchObject({ kind: "auth", message: "Missing DeepSeek API key." });
+}
+
+async function postsFormDataWithBearerAuth() {
+  const options = baseFormOptions();
+  const fetchImpl = fetchOnce(jsonResponse({ ok: true }));
+  await expect(postDeepSeekFormData({ ...options, fetchImpl })).resolves.toEqual({ ok: true });
+  const [url, rawInit] = firstCall(fetchImpl);
+  const init = fetchInit(rawInit);
+  expect(url).toBe(DEEPSEEK_OCR_URL);
+  expect(init.method).toBe("POST");
+  expect(init.headers).toEqual({ Authorization: "Bearer key" });
+  expect(init.body).toBe(options.formData);
+  expect(options.formData.get("purpose")).toBe("text_recognition");
+  const file = hostCast<File>(options.formData.get("file"));
+  expect(file.name).toBe("doc.pdf");
+  await expect(file.text()).resolves.toBe("hello");
+}
+
+async function retriesFormDataRequests() {
+  const options = baseFormOptions();
+  const fetchImpl = fetchSequence([httpFailure({ status: 500 }), jsonResponse({ ok: true })]);
+  const onRetry = vi.fn<(event: RetryEvent) => void>();
+  await expect(
+    postDeepSeekFormData({
+      ...options,
+      fetchImpl,
+      sleep: instantSleep(),
+      now: () => 0,
+      onRetry,
+    }),
+  ).resolves.toEqual({ ok: true });
+  expect(fetchImpl).toHaveBeenCalledTimes(2);
+  expect(onRetry).toHaveBeenCalledWith({
+    attempt: 1,
+    maxRetries: 2,
+    status: 500,
+    delayMs: 500,
+  });
+  const [, firstInit] = firstCall(fetchImpl);
+  expect(fetchInit(firstInit).body).toBe(options.formData);
+  expect(fetchInit(fetchImpl.mock.calls[1]?.[1]).body).toBe(options.formData);
 }
 
 async function usesGlobalFetchWhenNoImplementationIsInjected() {
@@ -100,6 +159,9 @@ async function mapsParseNetworkAndAbortFailures() {
 describe("shared DeepSeek HTTP client", () => {
   it("rejects a missing API key", rejectsMissingApiKey);
   it("posts JSON with bearer auth", postsJsonWithBearerAuth);
+  it("rejects a missing API key for form data", rejectsMissingApiKeyForFormData);
+  it("posts form data with bearer auth and no JSON content type", postsFormDataWithBearerAuth);
+  it("retries form data requests with the same body", retriesFormDataRequests);
   it(
     "uses global fetch when no implementation is injected",
     usesGlobalFetchWhenNoImplementationIsInjected,

@@ -25,6 +25,7 @@ _由 DeepSeek 驱动的 Pi 扩展_
 | [`@pi-dstools/web`](packages/web/README.md)       | 一个包内提供网页搜索与页面抓取 |
 | [`@pi-dstools/search`](packages/search/README.md) | 查找最新信息、来源与引用       |
 | [`@pi-dstools/fetch`](packages/fetch/README.md)   | 读取 HTTP 或 HTTPS 页面的内容  |
+| [`@pi-dstools/ocr`](packages/ocr/README.md)       | 识别本地文档与图片中的文字     |
 
 ## 环境要求
 
@@ -42,6 +43,7 @@ _由 DeepSeek 驱动的 Pi 扩展_
 pi install npm:@pi-dstools/web
 pi install npm:@pi-dstools/search
 pi install npm:@pi-dstools/fetch
+pi install npm:@pi-dstools/ocr
 ```
 
 从本地仓库检出安装的方法见各软件包的 README。
@@ -53,11 +55,13 @@ pi install npm:@pi-dstools/fetch
 ```text
 最新的 Vitest 版本有哪些变更？搜索网页并给出来源。
 帮我总结这个页面：https://example.com/docs/getting-started
+用 OCR 提取 ./report.pdf 中的文字。
 ```
 
 当前可用的工具：
 
 - `ds_search`：查找最新信息、来源与引用，需要时读取页面全文。
 - `ds_fetch`：读取你提供的 HTTP 或 HTTPS 页面内容。
+- `ds_ocr`：识别本地 PDF、Word、PowerPoint 或图片文件中的文字。
 
 运行 `pi config` 可分别启用或禁用各个工具。

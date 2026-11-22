@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  PREVIEW_LENGTH,
   displayContent,
   displayText,
   markdownLinkText,
   markdownLinkUrl,
+  previewText,
   retryMessage,
   splitContentLines,
   truncateText,
@@ -30,6 +32,14 @@ function formatsLinksTruncationAndRetryMessages() {
   );
 }
 
+function previewsByUnicodeCodePoints() {
+  expect(PREVIEW_LENGTH).toBe(300);
+  expect(previewText("short")).toBe("short");
+  const exact = "😀".repeat(PREVIEW_LENGTH);
+  expect(previewText(exact)).toBe(exact);
+  expect(previewText(`${exact}x`)).toBe(`${exact}...`);
+}
+
 function splitsContentIntoFileLines() {
   expect(splitContentLines("")).toEqual([""]);
   expect(splitContentLines("# A\n## B")).toEqual(["# A", "## B"]);
@@ -40,5 +50,6 @@ function splitsContentIntoFileLines() {
 describe("shared text helpers", () => {
   it("sanitizes display and content text", sanitizesDisplayAndContentText);
   it("formats links, truncation, and retry messages", formatsLinksTruncationAndRetryMessages);
+  it("builds previews by Unicode code point", previewsByUnicodeCodePoints);
   it("splits content into file lines across line-ending styles", splitsContentIntoFileLines);
 });

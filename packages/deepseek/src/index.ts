@@ -5,4 +5,5 @@ export * from "./credentials";
 export * from "./files";
 export * from "./http";
 export * from "./text";
+export * from "./headings";
 export * from "./theme";

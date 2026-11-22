@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { extractHeadings, formatHeadingTable } from "../src/headings";
+import { extractHeadings, formatHeadingTable } from "../src/index";
 
 function extractsOriginalAtxHeadingText() {
   const content = [

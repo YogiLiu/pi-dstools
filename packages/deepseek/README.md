@@ -1,6 +1,6 @@
 # @pi-dstools/deepseek
 
-Shared runtime library for the DeepSeek Search and Fetch APIs.
+Shared runtime library for the DeepSeek APIs.
 
 ## Requirements
 

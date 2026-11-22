@@ -6,6 +6,8 @@ const CONTROL_CHARACTERS = /[\u0000-\u001F\u007F]+/gu;
 const CONTENT_CONTROL_CHARACTERS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]+/gu;
 const CONTENT_LINE_BREAKS = /\r\n|\n|\r/u;
 
+export const PREVIEW_LENGTH = 300;
+
 export function displayText(value: string): string {
   return value.replaceAll(CONTROL_CHARACTERS, " ");
 }
@@ -30,6 +32,12 @@ export function markdownLinkUrl(value: string): string {
 export function truncateText(value: string, maxLength = 80): string {
   if (value.length <= maxLength) return value;
   return `${value.slice(0, Math.max(0, maxLength - 3))}...`;
+}
+
+export function previewText(value: string): string {
+  const characters = Array.from(value);
+  if (characters.length <= PREVIEW_LENGTH) return value;
+  return `${characters.slice(0, PREVIEW_LENGTH).join("")}...`;
 }
 
 export function unicodeLength(value: string): number {
