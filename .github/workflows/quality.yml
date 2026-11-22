@@ -42,3 +42,17 @@ jobs:
         run: pnpm check
       - name: Verify publish file lists
         run: pnpm pack:dry-run
+
+  quality-gate:
+    name: Quality gate
+    if: always()
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify all quality jobs succeeded
+        if: always()
+        run: |
+          if [ "${{ needs.quality.result }}" != "success" ]; then
+            exit 1
+          fi
